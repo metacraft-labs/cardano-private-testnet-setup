@@ -319,7 +319,7 @@ echo "====================================================================="
 mkdir shelley
 
 # Copy the QA testnet alonzo genesis which is equivalent to the mainnet
-cp ../configuration/cardano/shelley_qa-alonzo-genesis.json shelley/genesis.alonzo.spec.json
+cp $SCRIPT_PATH/../configuration/cardano/shelley_qa-alonzo-genesis.json $ROOT/shelley/genesis.alonzo.spec.json
 
 cardano-cli genesis create --testnet-magic ${NETWORK_MAGIC} --start-time $START_TIME_UTC --genesis-dir shelley
 
@@ -547,7 +547,7 @@ for NODE in ${BFT_NODES}; do
     echo "  --port                            $(cat ${NODE}/port) \\"
     echo "  --delegation-certificate          ${ROOT}/${NODE}/byron/delegate.cert \\"
     echo "  --signing-key                     ${ROOT}/${NODE}/byron/delegate.key \\"
-    echo "  | tee -a ${ROOT}/${NODE}/node.log"
+    echo "  2>&1 | tee -a ${ROOT}/${NODE}/node.log"
   ) > run/${NODE}.sh
 
   chmod a+x run/${NODE}.sh
@@ -689,3 +689,7 @@ elif [ "$1" = "shelley" ]; then
 else
   echo "Default yaml configuration applied."
 fi
+
+chmod -R +rw $ROOT
+#find $ROOT -type d -exec chmod 0777 {} \;
+find $ROOT -type f -name "*.*key" -exec chmod 0400 {} \;
