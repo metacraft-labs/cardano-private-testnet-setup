@@ -108,6 +108,7 @@ $SED -i ${ROOT}/configuration.yaml \
     -e 's/RequiresNoMagic/RequiresMagic/' \
     -e 's/LastKnownBlockVersion-Major: 0/LastKnownBlockVersion-Major: 1/' \
     -e 's/LastKnownBlockVersion-Minor: 2/LastKnownBlockVersion-Minor: 0/'
+chmod a+rw ${ROOT}/configuration.yaml
 # Options for making it easier to trigger the transition to Shelley
 # If neither of those are used, we have to
 # - post an update proposal + votes to go to protocol version 1
