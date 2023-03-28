@@ -36,8 +36,10 @@ kill_running_nodes() {
 
 start_all_nodes() {
   echo "start all the nodes in bg"
-  $ROOT/run/all.sh > /dev/null 2>&1 &
+  pushd $ROOT
+  ./run/all.sh > /dev/null 2>&1 &
   wait_until_count_of_running_nodes 3
+  popd
   echo
   echo "PIDs of started nodes:"
   for PID in `ps -ef | grep 'cardano-node' | grep -v grep |  awk '{print $2}'`;do echo "PID: $PID"; done
