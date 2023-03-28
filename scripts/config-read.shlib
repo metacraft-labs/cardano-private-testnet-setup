@@ -3,13 +3,7 @@ config_read_file() {
 }
 
 config_get() {
-    SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-    val="$(config_read_file "${SCRIPT_PATH}"/config.cfg "${1}")";
-    if [ "${val}" = "__UNDEFINED__" ]; then
-        echo -e "Missing config value for ${val}"
-        exit 1
-    fi
-    printf -- "%s" "${val}";
+    printf -- "%s" "${CARDANO_TESTNET_DIR}";
 }
 
 # find the directory path to the LICENSE file, which is in project basedir
