@@ -547,7 +547,7 @@ for NODE in ${BFT_NODES}; do
     echo "  --port                            $(cat ${NODE}/port) \\"
     echo "  --delegation-certificate          ${ROOT}/${NODE}/byron/delegate.cert \\"
     echo "  --signing-key                     ${ROOT}/${NODE}/byron/delegate.key \\"
-    echo "  2>&1 | tee -a ${ROOT}/${NODE}/node.log"
+    echo "  | tee -a ${ROOT}/${NODE}/node.log"
   ) > run/${NODE}.sh
 
   chmod a+x run/${NODE}.sh
