@@ -449,7 +449,7 @@ ADDRS="${USER_ADDRS} ${POOL_ADDRS}"
 
 mkdir addresses
 
-for ADDR in ${ADDRS}; do
+for ADDR in ${POOL_ADDRS}; do
 
   # Payment address keys
   cardano-cli address key-gen \
@@ -478,8 +478,58 @@ for ADDR in ${ADDRS}; do
   cardano-cli stake-address registration-certificate \
       --stake-verification-key-file addresses/${ADDR}-stake.vkey \
       --out-file addresses/${ADDR}-stake.reg.cert
-
 done
+
+cat > addresses/user1.skey << EOF
+{
+    "type": "PaymentSigningKeyShelley_ed25519",
+    "description": "Payment Signing Key",
+    "cborHex": "5820ab8a224656fcb5ab388c694ce136e98dab3f6cd840a29ed5ad3332b9204cf8a8"
+}
+EOF
+
+cat > addresses/user1.vkey << EOF
+{
+    "type": "PaymentVerificationKeyShelley_ed25519",
+    "description": "Payment Verification Key",
+    "cborHex": "58205f8b8bf94dfdcaf22b42f61fb72e2c9e955f57397b13ecdc00a960842c0bca2d"
+}
+EOF
+
+echo addr_test1qrpx7chstn6c4yl0ew7l9947qnjdy9zjhnwyvz74nqr725fjft9efg2k4tc49yg9mw7duwv0h0e9q04xd6hztgygc88sdfmnc8 > addresses/user1.addr
+
+cat > user1-stake.vkey << EOF
+{
+    "type": "StakeVerificationKeyShelley_ed25519",
+    "description": "Stake Verification Key",
+    "cborHex": "5820e60299d140f878e6121ac26ce8e97b05c0927ddd3a2f3f41f468bd359495c4ef"
+}
+EOF
+
+cat > user1-stake.skey << EOF
+{
+    "type": "StakeSigningKeyShelley_ed25519",
+    "description": "Stake Signing Key",
+    "cborHex": "58204732cfff837e2cd2becfa1a1bc14fbccfe81c2c8eb9610b11bbfaa0c11b047e2"
+}
+EOF
+
+cat > user1-stake.reg.cert << EOF
+{
+    "type": "CertificateShelley",
+    "description": "Stake Address Registration Certificate",
+    "cborHex": "82008200581c324acb94a156aaf1529105dbbcde398fbbf2503ea66eae25a088c1cf"
+}
+EOF
+
+cat > user1-stake.deleg.cert << EOF
+{
+    "type": "CertificateShelley",
+    "description": "Stake Address Delegation Certificate",
+    "cborHex": "83028200581c324acb94a156aaf1529105dbbcde398fbbf2503ea66eae25a088c1cf581cd26decdd6d22e2372657ed5a81bb4e72c02b98507a255eae1c5b39b4"
+}
+EOF
+
 
 # user N will delegate to pool N
 USER_POOL_N="1"
