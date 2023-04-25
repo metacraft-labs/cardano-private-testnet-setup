@@ -498,7 +498,7 @@ EOF
 
 echo addr_test1qrpx7chstn6c4yl0ew7l9947qnjdy9zjhnwyvz74nqr725fjft9efg2k4tc49yg9mw7duwv0h0e9q04xd6hztgygc88sdfmnc8 > addresses/user1.addr
 
-cat > user1-stake.vkey << EOF
+cat > addresses/user1-stake.vkey << EOF
 {
     "type": "StakeVerificationKeyShelley_ed25519",
     "description": "Stake Verification Key",
@@ -506,7 +506,7 @@ cat > user1-stake.vkey << EOF
 }
 EOF
 
-cat > user1-stake.skey << EOF
+cat > addresses/user1-stake.skey << EOF
 {
     "type": "StakeSigningKeyShelley_ed25519",
     "description": "Stake Signing Key",
@@ -514,7 +514,7 @@ cat > user1-stake.skey << EOF
 }
 EOF
 
-cat > user1-stake.reg.cert << EOF
+cat > addresses/user1-stake.reg.cert << EOF
 {
     "type": "CertificateShelley",
     "description": "Stake Address Registration Certificate",
@@ -522,7 +522,7 @@ cat > user1-stake.reg.cert << EOF
 }
 EOF
 
-cat > user1-stake.deleg.cert << EOF
+cat > addresses/user1-stake.deleg.cert << EOF
 {
     "type": "CertificateShelley",
     "description": "Stake Address Delegation Certificate",
